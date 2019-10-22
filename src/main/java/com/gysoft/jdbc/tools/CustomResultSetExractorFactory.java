@@ -2,7 +2,6 @@ package com.gysoft.jdbc.tools;
 
 import org.springframework.jdbc.core.ResultSetExtractor;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

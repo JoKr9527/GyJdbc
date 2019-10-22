@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
  */
 public class FuncBuilder {
 
-    public static AbstractFuncBuilder lengthAs(String field) {
-        return new LengthFuncBuilder(field);
+    public static FuncBuilderExt lengthAs(String field) {
+        return new FuncBuilderExt(length(field));
     }
 
-    public static <T, R> AbstractFuncBuilder lengthAs(TypeFunction<T, R> function) {
+    public static <T, R> FuncBuilderExt lengthAs(TypeFunction<T, R> function) {
         return lengthAs(TypeFunction.getLambdaColumnName(function));
     }
 
@@ -33,19 +33,19 @@ public class FuncBuilder {
         return charLength(TypeFunction.getLambdaColumnName(function));
     }
 
-    public static AbstractFuncBuilder charLengthAs(String field) {
-        return new CharLengthFuncBuilder(field);
+    public static FuncBuilderExt charLengthAs(String field) {
+        return new FuncBuilderExt(charLength(field));
     }
 
-    public static <T, R> AbstractFuncBuilder charLengthAs(TypeFunction<T, R> field) {
+    public static <T, R> FuncBuilderExt charLengthAs(TypeFunction<T, R> field) {
         return charLengthAs(TypeFunction.getLambdaColumnName(field));
     }
 
-    public static AbstractFuncBuilder avgAs(String field) {
-        return new AvgFuncBuilder(field);
+    public static FuncBuilderExt avgAs(String field) {
+        return new FuncBuilderExt(avg(field));
     }
 
-    public static <T, R> AbstractFuncBuilder avgAs(TypeFunction<T, R> function) {
+    public static <T, R> FuncBuilderExt avgAs(TypeFunction<T, R> function) {
         return avgAs(TypeFunction.getLambdaColumnName(function));
     }
 
@@ -57,12 +57,12 @@ public class FuncBuilder {
         return avg(TypeFunction.getLambdaColumnName(function));
     }
 
-    public static <T, R> AbstractFuncBuilder countAs(TypeFunction<T, R> function) {
+    public static <T, R> FuncBuilderExt countAs(TypeFunction<T, R> function) {
         return countAs(TypeFunction.getLambdaColumnName(function));
     }
 
-    public static AbstractFuncBuilder countAs(String field) {
-        return new CountFuncBuilder(field);
+    public static FuncBuilderExt countAs(String field) {
+        return new FuncBuilderExt(count(field));
     }
 
     public static String count(String field) {
@@ -74,11 +74,11 @@ public class FuncBuilder {
     }
 
 
-    public static AbstractFuncBuilder maxAs(String field) {
-        return new MaxFuncBuilder(field);
+    public static FuncBuilderExt maxAs(String field) {
+        return new FuncBuilderExt(max(field));
     }
 
-    public static <T, R> AbstractFuncBuilder maxAs(TypeFunction<T, R> function) {
+    public static <T, R> FuncBuilderExt maxAs(TypeFunction<T, R> function) {
         return maxAs(TypeFunction.getLambdaColumnName(function));
     }
 
@@ -92,11 +92,11 @@ public class FuncBuilder {
     }
 
 
-    public static AbstractFuncBuilder minAs(String field) {
-        return new MinFuncBuilder(field);
+    public static FuncBuilderExt minAs(String field) {
+        return new FuncBuilderExt(min(field));
     }
 
-    public static <T, R> AbstractFuncBuilder minAs(TypeFunction<T, R> function) {
+    public static <T, R> FuncBuilderExt minAs(TypeFunction<T, R> function) {
         return minAs(TypeFunction.getLambdaColumnName(function));
     }
 
@@ -108,11 +108,11 @@ public class FuncBuilder {
         return "MIN(" + field + ")";
     }
 
-    public static AbstractFuncBuilder sumAs(String field) {
-        return new SumFuncBuilder(field);
+    public static FuncBuilderExt sumAs(String field) {
+        return new FuncBuilderExt(sum(field));
     }
 
-    public static <T, R> AbstractFuncBuilder sumAs(TypeFunction<T, R> function) {
+    public static <T, R> FuncBuilderExt sumAs(TypeFunction<T, R> function) {
         return sumAs(TypeFunction.getLambdaColumnName(function));
     }
 
@@ -133,19 +133,19 @@ public class FuncBuilder {
         return concat(Arrays.stream(functions).map(function -> TypeFunction.getLambdaColumnName(function)).collect(Collectors.toList()).toArray(new String[0]));
     }
 
-    public static AbstractFuncBuilder concatAs(String... fields) {
-        return new ConcatFuncBuilder(fields);
+    public static FuncBuilderExt concatAs(String... fields) {
+        return new FuncBuilderExt(concat(fields));
     }
 
-    public static <T, R> AbstractFuncBuilder concatAs(TypeFunction<T, R>... functions) {
+    public static <T, R> FuncBuilderExt concatAs(TypeFunction<T, R>... functions) {
         return concatAs(Arrays.stream(functions).map(function -> TypeFunction.getLambdaColumnName(function)).collect(Collectors.toList()).toArray(new String[0]));
     }
 
-    public static AbstractFuncBuilder concat_wsAs(String joinStr, String... fields) {
-        return new ConcatWsFuncBuilder(joinStr, fields);
+    public static FuncBuilderExt concat_wsAs(String joinStr, String... fields) {
+        return new FuncBuilderExt(concat_ws(joinStr, fields));
     }
 
-    public static <T, R> AbstractFuncBuilder concat_wsAs(String joinStr, TypeFunction<T, R>... functions) {
+    public static <T, R> FuncBuilderExt concat_wsAs(String joinStr, TypeFunction<T, R>... functions) {
         return concat_wsAs(joinStr, Arrays.stream(functions).map(function -> TypeFunction.getLambdaColumnName(function)).collect(Collectors.toList()).toArray(new String[0]));
     }
 
@@ -158,11 +158,11 @@ public class FuncBuilder {
     }
 
 
-    public static AbstractFuncBuilder upperAs(String field) {
-        return new UpperFuncBuilder(field);
+    public static FuncBuilderExt upperAs(String field) {
+        return new FuncBuilderExt(upper(field));
     }
 
-    public static <T,R>AbstractFuncBuilder upperAs(TypeFunction<T,R> function) {
+    public static <T,R>FuncBuilderExt upperAs(TypeFunction<T,R> function) {
         return upperAs(TypeFunction.getLambdaColumnName(function));
     }
 
@@ -174,11 +174,11 @@ public class FuncBuilder {
         return upper(TypeFunction.getLambdaColumnName(field));
     }
 
-    public static AbstractFuncBuilder lowerAs(String field) {
-        return new LowerFuncBuilder(field);
+    public static FuncBuilderExt lowerAs(String field) {
+        return new FuncBuilderExt(lower(field));
     }
 
-    public static <T,R>AbstractFuncBuilder lowerAs(TypeFunction<T,R> function) {
+    public static <T,R>FuncBuilderExt lowerAs(TypeFunction<T,R> function) {
         return lowerAs(TypeFunction.getLambdaColumnName(function));
     }
 
@@ -190,196 +190,75 @@ public class FuncBuilder {
         return lower(TypeFunction.getLambdaColumnName(function));
     }
 
-    private static class ConcatWsFuncBuilder extends AbstractFuncBuilder {
-        private ConcatWsFuncBuilder(String joinStr, String... fields) {
-            this.funcSql = "CONCAT_WS(" + joinStr + "," + Arrays.stream(fields).collect(Collectors.joining(",")) + ")";
-        }
-    }
-
-    private static class ConcatFuncBuilder extends AbstractFuncBuilder {
-        private ConcatFuncBuilder(String... fields) {
-            this.funcSql = "CONCAT(" + Arrays.stream(fields).collect(Collectors.joining(",")) + ")";
-        }
-    }
-
-    private static class SumFuncBuilder extends AbstractFuncBuilder {
-        private SumFuncBuilder(String field) {
-            this.funcSql = "SUM(" + field + ")";
-        }
-    }
-
-    private static class MinFuncBuilder extends AbstractFuncBuilder {
-        private MinFuncBuilder(String field) {
-            this.funcSql = "MIN(" + field + ")";
-        }
-    }
-
-    private static class MaxFuncBuilder extends AbstractFuncBuilder {
-        private MaxFuncBuilder(String field) {
-            this.funcSql = "MAX(" + field + ")";
-        }
-    }
-
-    private static class CountFuncBuilder extends AbstractFuncBuilder {
-        private CountFuncBuilder(String field) {
-            this.funcSql = "COUNT(" + field + ")";
-        }
-    }
-
-    private static class AvgFuncBuilder extends AbstractFuncBuilder {
-        private AvgFuncBuilder(String field) {
-            this.funcSql = "AVG(" + field + ")";
-        }
-    }
-
-    private static class LengthFuncBuilder extends AbstractFuncBuilder {
-        private LengthFuncBuilder(String field) {
-            this.funcSql = "LENGTH(" + field + ")";
-        }
-    }
-
-    private static class CharLengthFuncBuilder extends AbstractFuncBuilder {
-        private CharLengthFuncBuilder(String field) {
-            this.funcSql = "CHAR_LENGTH(" + field + ")";
-        }
-    }
-
-    private static class UpperFuncBuilder extends AbstractFuncBuilder {
-        private UpperFuncBuilder(String field) {
-            this.funcSql = "UPPER(" + field + ")";
-        }
-    }
-
-    private static class LowerFuncBuilder extends AbstractFuncBuilder {
-        private LowerFuncBuilder(String field) {
-            this.funcSql = "LOWER(" + field + ")";
-        }
-    }
-
-    private static class FindInSetFuncBuilder extends AbstractFuncBuilder {
-        private FindInSetFuncBuilder(String field, String field2) {
-            this.funcSql = "FIND_IN_SET(" + field + "," + field2 + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder findInSetAs(String field, String field2) {
-        return new FindInSetFuncBuilder(field, field2);
+    public static FuncBuilderExt findInSetAs(String field, String field2) {
+        return new FuncBuilderExt(findInSet(field, field2));
     }
 
     public static String findInSet(String field, String field2) {
         return "FIND_IN_SET(" + field + "," + field2 + ")";
     }
 
-    private static class LocateFuncBuilder extends AbstractFuncBuilder {
-        private LocateFuncBuilder(String field, String field2) {
-            this.funcSql = "LOCATE(" + field + "," + field2 + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder locateAs(String field, String field2) {
-        return new LocateFuncBuilder(field, field2);
+    public static FuncBuilderExt locateAs(String field, String field2) {
+        return new FuncBuilderExt(locate(field, field2));
     }
 
     public static String locate(String field, String field2) {
         return "LOCATE(" + field + "," + field2 + ")";
     }
 
-    private static class PositionFuncBuilder extends AbstractFuncBuilder {
-        private PositionFuncBuilder(String field, String field2) {
-            this.funcSql = "POSITION(" + field + " IN " + field2 + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder positionAs(String field, String field2) {
-        return new PositionFuncBuilder(field, field2);
+    public static FuncBuilderExt positionAs(String field, String field2) {
+        return new FuncBuilderExt(position(field, field2));
     }
 
     public static String position(String field, String field2) {
         return "POSITION(" + field + " IN " + field2 + ")";
     }
 
-    private static class InstrFuncBuilder extends AbstractFuncBuilder {
-        private InstrFuncBuilder(String field, String field2) {
-            this.funcSql = "INSTR(" + field + "," + field2 + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder instrAs(String field, String field2) {
-        return new InstrFuncBuilder(field, field2);
+    public static FuncBuilderExt instrAs(String field, String field2) {
+        return new FuncBuilderExt(instr(field, field2));
     }
 
     public static String instr(String field, String field2) {
         return "INSTR(" + field + "," + field2 + ")";
     }
 
-    private static class LeftFuncBuilder extends AbstractFuncBuilder {
-        private LeftFuncBuilder(String field, int index) {
-            this.funcSql = "LEFT(" + field + "," + index + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder leftAs(String field, int index) {
-        return new LeftFuncBuilder(field, index);
+    public static FuncBuilderExt leftAs(String field, int index) {
+        return new FuncBuilderExt(left(field, index));
     }
 
     public static String left(String field, int index) {
         return "LEFT(" + field + "," + index + ")";
     }
 
-    private static class EltFuncBuilder extends AbstractFuncBuilder {
-        private EltFuncBuilder(int index, String... fields) {
-            this.funcSql = "ELT(" + index + "," + Arrays.stream(fields).collect(Collectors.joining(",")) + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder eltAs(int index, String... fields) {
-        return new EltFuncBuilder(index, fields);
+    public static FuncBuilderExt eltAs(int index, String... fields) {
+        return new FuncBuilderExt(elt(index, fields));
     }
 
     public static String elt(int index, String... fields) {
         return "ELT(" + index + "," + Arrays.stream(fields).collect(Collectors.joining(",")) + ")";
     }
 
-    private static class RightFuncBuilder extends AbstractFuncBuilder {
-        private RightFuncBuilder(String field, int index) {
-            this.funcSql = "RIGHT(" + field + "," + index + ")";
-
-        }
-    }
-
-    public static AbstractFuncBuilder rightAs(String field, int index) {
-        return new RightFuncBuilder(field, index);
+    public static FuncBuilderExt rightAs(String field, int index) {
+        return new FuncBuilderExt(right(field, index));
     }
 
     public static String right(String field, int index) {
         return "RIGHT(" + field + "," + index + ")";
     }
 
-    private static class SubStringFuncBuilder extends AbstractFuncBuilder {
-        private SubStringFuncBuilder(String field, int index, int index2) {
-            this.funcSql = "SUBSTRING(" + field + "," + index + "," + index2 + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder substringAs(String field, int index, int index2) {
-        return new SubStringFuncBuilder(field, index, index2);
+    public static FuncBuilderExt substringAs(String field, int index, int index2) {
+        return new FuncBuilderExt(substring(field, index, index2));
     }
 
     public static String substring(String field, int index, int index2) {
         return "SUBSTRING(" + field + "," + index + "," + index2 + ")";
     }
 
-    private static class LtrimFuncBuilder extends AbstractFuncBuilder {
-        private LtrimFuncBuilder(String field) {
-            this.funcSql = "LTRIM(" + field + ")";
-        }
+    public static FuncBuilderExt ltrimAs(String field) {
+        return new FuncBuilderExt(ltrim(field));
     }
 
-    public static AbstractFuncBuilder ltrimAs(String field) {
-        return new LtrimFuncBuilder(field);
-    }
-
-    public static <T, R> AbstractFuncBuilder ltrimAs(TypeFunction<T, R> function) {
+    public static <T, R> FuncBuilderExt ltrimAs(TypeFunction<T, R> function) {
         return ltrimAs(TypeFunction.getLambdaColumnName(function));
     }
 
@@ -391,17 +270,11 @@ public class FuncBuilder {
         return ltrim(TypeFunction.getLambdaColumnName(function));
     }
 
-    private static class RtrimFuncBuilder extends AbstractFuncBuilder {
-        private RtrimFuncBuilder(String field) {
-            this.funcSql = "RTRIM(" + field + ")";
-        }
+    public static FuncBuilderExt rtrimAs(String field) {
+        return new FuncBuilderExt(rtrim(field));
     }
 
-    public static AbstractFuncBuilder rtrimAs(String field) {
-        return new RtrimFuncBuilder(field);
-    }
-
-    public static <T, R> AbstractFuncBuilder rtrimAs(TypeFunction<T, R> function) {
+    public static <T, R> FuncBuilderExt rtrimAs(TypeFunction<T, R> function) {
         return rtrimAs(TypeFunction.getLambdaColumnName(function));
     }
 
@@ -414,18 +287,11 @@ public class FuncBuilder {
         return rtrim(TypeFunction.getLambdaColumnName(function));
     }
 
-    private static class TrimFuncBuilder extends AbstractFuncBuilder {
-        private TrimFuncBuilder(String field) {
-            this.funcSql = "TRIM(" + field + ")";
-        }
-
+    public static FuncBuilderExt trimAs(String field) {
+        return new FuncBuilderExt(trim(field));
     }
 
-    public static AbstractFuncBuilder trimAs(String field) {
-        return new TrimFuncBuilder(field);
-    }
-
-    public static <T, R> AbstractFuncBuilder trimAs(TypeFunction<T, R> function) {
+    public static <T, R> FuncBuilderExt trimAs(TypeFunction<T, R> function) {
         return trimAs(TypeFunction.getLambdaColumnName(function));
     }
 
@@ -437,46 +303,29 @@ public class FuncBuilder {
         return trim(TypeFunction.getLambdaColumnName(function));
     }
 
-
-    private static class InsertFuncBuilder extends AbstractFuncBuilder {
-        private InsertFuncBuilder(String field, int start, int end, String field2) {
-            this.funcSql = "INSERT(" + field + "," + start + "," + end + "," + field2 + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder insertAs(String field, int start, int end, String field2) {
-        return new InsertFuncBuilder(field, start, end, field2);
+    public static FuncBuilderExt insertAs(String field, int start, int end, String field2) {
+        return new FuncBuilderExt(insert(field, start, end, field2));
     }
 
     public static String insert(String field, int start, int end, String field2) {
-        return "INSERT(" + field + "," + start + "," + end + "," + field2 + ")";
+        return new StringBuilder().append("INSERT(").append(field).append(",").append(start)
+                .append(",").append(end).append(",").append(field2).append(")").toString();
     }
 
-    private static class ReplaceFuncBuilder extends AbstractFuncBuilder {
-        private ReplaceFuncBuilder(String field, String field2, String field3) {
-            this.funcSql = "REPLACE(" + field + "," + field2 + "," + field3 + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder replaceAs(String field, String field2, String field3) {
-        return new ReplaceFuncBuilder(field, field2, field3);
+    public static FuncBuilderExt replaceAs(String field, String field2, String field3) {
+        return new FuncBuilderExt(replace(field, field2, field3));
     }
 
     public static String replace(String field, String field2, String field3) {
-        return "REPLACE(" + field + "," + field2 + "," + field3 + ")";
+        return new StringBuilder().append("REPLACE(").append(field).append(",")
+                .append(field2).append(",").append(field3).append(")").toString();
     }
 
-    private static class AbsFuncBuilder extends AbstractFuncBuilder {
-        private AbsFuncBuilder(String field) {
-            this.funcSql = "ABS(" + field + ")";
-        }
+    public static FuncBuilderExt absAs(String field) {
+        return new FuncBuilderExt(abs(field));
     }
 
-    public static AbstractFuncBuilder absAs(String field) {
-        return new AbsFuncBuilder(field);
-    }
-
-    public static <T, R> AbstractFuncBuilder absAs(TypeFunction<T, R> function) {
+    public static <T, R> FuncBuilderExt absAs(TypeFunction<T, R> function) {
         return absAs(TypeFunction.getLambdaColumnName(function));
     }
 
@@ -488,17 +337,11 @@ public class FuncBuilder {
         return abs(TypeFunction.getLambdaColumnName(function));
     }
 
-    private static class CeilFuncBuilder extends AbstractFuncBuilder {
-        private CeilFuncBuilder(String field) {
-            this.funcSql = "CEIL(" + field + ")";
-        }
+    public static FuncBuilderExt ceilAs(String field) {
+        return new FuncBuilderExt(ceil(field));
     }
 
-    public static AbstractFuncBuilder ceilAs(String field) {
-        return new CeilFuncBuilder(field);
-    }
-
-    public static <T, R> AbstractFuncBuilder ceilAs(TypeFunction<T, R> function) {
+    public static <T, R> FuncBuilderExt ceilAs(TypeFunction<T, R> function) {
         return ceilAs(TypeFunction.getLambdaColumnName(function));
     }
 
@@ -511,17 +354,11 @@ public class FuncBuilder {
         return ceil(TypeFunction.getLambdaColumnName(function));
     }
 
-    private static class FloorFuncBuilder extends AbstractFuncBuilder {
-        private FloorFuncBuilder(String field) {
-            this.funcSql = "FLOOR(" + field + ")";
-        }
+    public static FuncBuilderExt floorAs(String field) {
+        return new FuncBuilderExt(floor(field));
     }
 
-    public static AbstractFuncBuilder floorAs(String field) {
-        return new FloorFuncBuilder(field);
-    }
-
-    public static <T, R> AbstractFuncBuilder floorAs(TypeFunction<T, R> function) {
+    public static <T, R> FuncBuilderExt floorAs(TypeFunction<T, R> function) {
         return floorAs(TypeFunction.getLambdaColumnName(function));
     }
 
@@ -533,36 +370,21 @@ public class FuncBuilder {
         return floor(TypeFunction.getLambdaColumnName(function));
     }
 
-    private static class ModFuncBuilder extends AbstractFuncBuilder {
-        private ModFuncBuilder(String field, String field2) {
-            this.funcSql = "MOD(" + field + "," + field2 + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder modAs(String field, String field2) {
-        return new ModFuncBuilder(field, field2);
+    public static FuncBuilderExt modAs(String field, String field2) {
+        return new FuncBuilderExt(mod(field, field2));
     }
 
     public static String mod(String field, String field2) {
-        return "MOD(" + field + "," + field2 + ")";
+        return new StringBuilder().append("MOD(").append(field)
+                .append(",").append(field2).append(")").toString();
     }
 
-    private static class RandFuncBuilder extends AbstractFuncBuilder {
-        private RandFuncBuilder() {
-            this.funcSql = "RAND()";
-        }
-
-        private RandFuncBuilder(int seed) {
-            this.funcSql = "RAND(" + seed + ")";
-        }
+    public static FuncBuilderExt randAs() {
+        return new FuncBuilderExt(rand());
     }
 
-    public static AbstractFuncBuilder randAs() {
-        return new RandFuncBuilder();
-    }
-
-    public static AbstractFuncBuilder randAs(int seed) {
-        return new RandFuncBuilder(seed);
+    public static FuncBuilderExt randAs(int seed) {
+        return new FuncBuilderExt(rand(seed));
     }
 
     public static String rand() {
@@ -573,204 +395,121 @@ public class FuncBuilder {
         return "RAND(" + seed + ")";
     }
 
-    private static class RoundFuncBuilder extends AbstractFuncBuilder {
-        private RoundFuncBuilder(String field, int digit) {
-            this.funcSql = "ROUND(" + field + "," + digit + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder roundAs(String field, int digit) {
-        return new RoundFuncBuilder(field, digit);
+    public static FuncBuilderExt roundAs(String field, int digit) {
+        return new FuncBuilderExt(round(field, digit));
     }
 
     public static String round(String field, int digit) {
-        return "ROUND(" + field + "," + digit + ")";
+        return new StringBuilder().append("ROUND(").append(field).append(",")
+                .append(digit).append(")").toString();
     }
 
-    private static class TruncateFuncBuilder extends AbstractFuncBuilder {
-        private TruncateFuncBuilder(String field, int digit) {
-            this.funcSql = "TRUNCATE(" + field + "," + digit + ")";
-
-        }
-    }
-
-    public static AbstractFuncBuilder truncateAs(String field, int digit) {
-        return new TruncateFuncBuilder(field, digit);
+    public static FuncBuilderExt truncateAs(String field, int digit) {
+        return new FuncBuilderExt(truncate(field, digit));
     }
 
     public static String truncate(String field, int digit) {
-        return "TRUNCATE(" + field + "," + digit + ")";
+        return new StringBuilder().append("TRUNCATE(").append(field).append(",")
+                .append(digit).append(")").toString();
     }
 
-    private static class CurDateFuncBuilder extends AbstractFuncBuilder {
-        private CurDateFuncBuilder() {
-            this.funcSql = "CURDATE()";
-        }
-    }
-
-    public static AbstractFuncBuilder curdateAs() {
-        return new CurDateFuncBuilder();
+    public static FuncBuilderExt curdateAs() {
+        return new FuncBuilderExt(curdate());
     }
 
     public static String curdate() {
         return "CURDATE()";
     }
 
-    private static class CurTimeFuncBuilder extends AbstractFuncBuilder {
-        private CurTimeFuncBuilder() {
-            this.funcSql = "CURTIME()";
-        }
-    }
-
-    public static AbstractFuncBuilder curtimeAs() {
-        return new CurTimeFuncBuilder();
+    public static FuncBuilderExt curtimeAs() {
+        return new FuncBuilderExt(curtime());
     }
 
     public static String curtime() {
         return "CURTIME()";
     }
 
-    private static class NowFuncBuilder extends AbstractFuncBuilder {
-        private NowFuncBuilder() {
-            this.funcSql = "NOW()";
-        }
-    }
-
-    public static AbstractFuncBuilder nowAs() {
-        return new NowFuncBuilder();
+    public static FuncBuilderExt nowAs() {
+        return new FuncBuilderExt(now());
     }
 
     public static String now() {
         return "NOW()";
     }
 
-    private static class MonthFuncBuilder extends AbstractFuncBuilder {
-        private MonthFuncBuilder(String dateField) {
-            this.funcSql = "MONTH(" + dateField + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder monthAs(String dateField) {
-        return new MonthFuncBuilder(dateField);
+    public static FuncBuilderExt monthAs(String dateField) {
+        return new FuncBuilderExt(month(dateField));
     }
 
     public static String month(String dateField) {
         return "MONTH(" + dateField + ")";
     }
 
-    private static class MonthNameFuncBuilder extends AbstractFuncBuilder {
-        private MonthNameFuncBuilder(String dateField) {
-            this.funcSql = "MONTHNAME(" + dateField + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder monthnameAs(String dateField) {
-        return new MonthNameFuncBuilder(dateField);
+    public static FuncBuilderExt monthnameAs(String dateField) {
+        return new FuncBuilderExt(monthname(dateField));
     }
 
     public static String monthname(String dateField) {
         return "MONTHNAME(" + dateField + ")";
     }
 
-    private static class WeekFuncBuilder extends AbstractFuncBuilder {
-        private WeekFuncBuilder(String dateField) {
-            this.funcSql = "WEEK(" + dateField + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder weekAs(String dateField) {
-        return new WeekFuncBuilder(dateField);
+    public static FuncBuilderExt weekAs(String dateField) {
+        return new FuncBuilderExt(week(dateField));
     }
 
     public static String week(String dateField) {
         return "WEEK(" + dateField + ")";
     }
 
-    private static class YearFuncBuilder extends AbstractFuncBuilder {
-        private YearFuncBuilder(String dateField) {
-            this.funcSql = "YEAR(" + dateField + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder yearAs(String dateField) {
-        return new YearFuncBuilder(dateField);
+    public static FuncBuilderExt yearAs(String dateField) {
+        return new FuncBuilderExt(year(dateField));
     }
 
     public static String year(String dateField) {
         return "YEAR(" + dateField + ")";
     }
 
-    private static class HourFuncBuilder extends AbstractFuncBuilder {
-        private HourFuncBuilder(String timeField) {
-            this.funcSql = "HOUR(" + timeField + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder hourAs(String timeField) {
-        return new HourFuncBuilder(timeField);
+    public static FuncBuilderExt hourAs(String timeField) {
+        return new FuncBuilderExt(hour(timeField));
     }
 
     public static String hour(String timeField) {
         return "HOUR(" + timeField + ")";
     }
 
-    private static class MinuteFuncBuilder extends AbstractFuncBuilder {
-        private MinuteFuncBuilder(String timeField) {
-            this.funcSql = "MINUTE(" + timeField + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder minuteAs(String timeField) {
-        return new MinuteFuncBuilder(timeField);
+    public static FuncBuilderExt minuteAs(String timeField) {
+        return new FuncBuilderExt(minute(timeField));
     }
 
     public static String minute(String timeField) {
         return "MINUTE(" + timeField + ")";
     }
 
-    private static class WeekDayFuncBuilder extends AbstractFuncBuilder {
-        private WeekDayFuncBuilder(String dateField) {
-            this.funcSql = "WEEKDAY(" + dateField + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder weekdayAs(String dateField) {
-        return new WeekDayFuncBuilder(dateField);
+    public static FuncBuilderExt weekdayAs(String dateField) {
+        return new FuncBuilderExt(weekday(dateField));
     }
 
     public static String weekday(String dateField) {
         return "WEEKDAY(" + dateField + ")";
     }
 
-    private static class DayNameFuncBuilder extends AbstractFuncBuilder {
-        private DayNameFuncBuilder(String dateField) {
-            this.funcSql = "DAYNAME(" + dateField + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder daynameAs(String dateField) {
-        return new DayNameFuncBuilder(dateField);
+    public static FuncBuilderExt daynameAs(String dateField) {
+        return new FuncBuilderExt(dayname(dateField));
     }
 
     public static String dayname(String dateField) {
         return "DAYNAME(" + dateField + ")";
     }
 
-    private static class DistinctFuncBuilder extends AbstractFuncBuilder {
-        private DistinctFuncBuilder(String field) {
-            this.funcSql = "DISTINCT(" + field + ")";
-        }
-    }
-
-    public static AbstractFuncBuilder distinctAs(String field) {
-        return new DistinctFuncBuilder(field);
+    public static FuncBuilderExt distinctAs(String field) {
+        return new FuncBuilderExt(distinct(field));
     }
 
     public static String distinct(String field) {
         return "DISTINCT(" + field + ")";
     }
 
-    public static <T, R> AbstractFuncBuilder distinctAs(TypeFunction<T, R> function) {
+    public static <T, R> FuncBuilderExt distinctAs(TypeFunction<T, R> function) {
         return distinctAs(TypeFunction.getLambdaColumnName(function));
     }
 
@@ -778,17 +517,11 @@ public class FuncBuilder {
         return distinct(TypeFunction.getLambdaColumnName(function));
     }
 
-    private static class ConvertUsingGbkFuncBuilder extends AbstractFuncBuilder{
-        private ConvertUsingGbkFuncBuilder(String field){
-            this.funcSql = "CONVERT("+field+" USING GBK)";
-        }
+    public static FuncBuilderExt convertUsingGbkAs(String field) {
+        return new FuncBuilderExt(convertUsingGbk(field));
     }
 
-    public static AbstractFuncBuilder convertUsingGbkAs(String field) {
-        return new ConvertUsingGbkFuncBuilder(field);
-    }
-
-    public static <T,R>AbstractFuncBuilder convertUsingGbkAs(TypeFunction<T,R> function) {
+    public static <T,R>FuncBuilderExt convertUsingGbkAs(TypeFunction<T,R> function) {
         return convertUsingGbkAs(TypeFunction.getLambdaColumnName(function));
     }
 
@@ -800,182 +533,130 @@ public class FuncBuilder {
         return convertUsingGbk(TypeFunction.getLambdaColumnName(function));
     }
 
-    public static abstract class AbstractFuncBuilder {
-        protected String funcSql;
-
-        public String as(String as) {
-            return funcSql + " AS " + as;
-        }
+    public static FuncBuilderExt dateFormatAs(String field, String formatPattern) {
+        return new FuncBuilderExt(dateFormat(field, formatPattern));
     }
 
-    private static class DateFormatFuncBuilder extends AbstractFuncBuilder {
-
-        private DateFormatFuncBuilder(String field, String formatPattern) {
-            this.funcSql = "DATE_FORMAT(" + field + ",'" + formatPattern + "')";
-        }
-
-    }
-
-    public static AbstractFuncBuilder dateFormatAs(String field, String formatPattern) {
-        return new DateFormatFuncBuilder(field, formatPattern);
-    }
-
-    public static <T, R> AbstractFuncBuilder dateFormatAs(TypeFunction<T, R> function, String formatPattern) {
+    public static <T, R> FuncBuilderExt dateFormatAs(TypeFunction<T, R> function, String formatPattern) {
         return dateFormatAs(TypeFunction.getLambdaColumnName(function), formatPattern);
     }
 
     public static String dateFormat(String field, String formatPattern) {
-        return "DATE_FORMAT(" + field + ",'" + formatPattern + "')";
+        return new StringBuilder().append("DATE_FORMAT(").append(field)
+                .append(",'").append(formatPattern).append("')").toString();
     }
 
     public static <T, R> String dateFormat(TypeFunction<T, R> function, String formatPattern) {
         return dateFormat(TypeFunction.getLambdaColumnName(function), formatPattern);
     }
 
-    public static class FormatFuncBuilder extends AbstractFuncBuilder {
-        private FormatFuncBuilder(String field, String formatPattern) {
-            this.funcSql = "FORMAT(" + field + ",'" + formatPattern + "')";
-        }
+    public static FuncBuilderExt formatAs(String field, String formatPattern) {
+        return new FuncBuilderExt(format(field, formatPattern));
     }
 
-    public static AbstractFuncBuilder formatAs(String field, String formatPattern) {
-        return new FormatFuncBuilder(field, formatPattern);
-    }
-
-    public static <T, R> AbstractFuncBuilder formatAs(TypeFunction<T, R> function, String formatPattern) {
+    public static <T, R> FuncBuilderExt formatAs(TypeFunction<T, R> function, String formatPattern) {
         return formatAs(TypeFunction.getLambdaColumnName(function), formatPattern);
     }
 
     public static String format(String field, String formatPattern) {
-        return "FORMAT(" + field + ",'" + formatPattern + "')";
+        return new StringBuilder().append("FORMAT(").append(field)
+                .append(",'").append(formatPattern).append("')").toString();
     }
 
     public static <T, R> String format(TypeFunction<T, R> function, String formatPattern) {
         return format(TypeFunction.getLambdaColumnName(function), formatPattern);
     }
 
-    private static class DateSubFuncBuilder extends AbstractFuncBuilder {
-        private DateSubFuncBuilder(String field, String express) {
-            this.funcSql = "DATE_SUB(" + field + "," + express + ")";
-        }
+    public static FuncBuilderExt dateSubAs(String field, String express) {
+        return new FuncBuilderExt(dateSub(field, express));
     }
 
-    public static AbstractFuncBuilder dateSubAs(String field, String express) {
-        return new DateSubFuncBuilder(field, express);
-    }
-
-    public static <T, R> AbstractFuncBuilder dateSubAs(TypeFunction<T, R> function, String express) {
+    public static <T, R> FuncBuilderExt dateSubAs(TypeFunction<T, R> function, String express) {
         return dateSubAs(TypeFunction.getLambdaColumnName(function), express);
     }
 
     public static String dateSub(String field, String express) {
-        return "DATE_SUB(" + field + "," + express + ")";
+        return new StringBuilder().append("DATE_SUB(").append(field).append(",")
+                .append(express).append(")").toString();
     }
 
     public static <T, R> String dateSub(TypeFunction<T, R> function, String express) {
         return dateSub(TypeFunction.getLambdaColumnName(function), express);
     }
 
-    private static class DateAddFuncBuilder extends AbstractFuncBuilder {
-        private DateAddFuncBuilder(String field, String express) {
-            this.funcSql = "DATE_ADD(" + field + "," + express + ")";
-        }
+    public static FuncBuilderExt dateAddAs(String field, String express) {
+        return new FuncBuilderExt(dateAdd(field, express));
     }
 
-    public static AbstractFuncBuilder dateAddAs(String field, String express) {
-        return new DateAddFuncBuilder(field, express);
-    }
-
-    public static <T, R> AbstractFuncBuilder dateAddAs(TypeFunction<T, R> function, String express) {
+    public static <T, R> FuncBuilderExt dateAddAs(TypeFunction<T, R> function, String express) {
         return dateAddAs(TypeFunction.getLambdaColumnName(function), express);
     }
 
     public static String dateAdd(String field, String express) {
-        return "DATE_ADD(" + field + "," + express + ")";
+        return new StringBuilder().append("DATE_ADD(").append(field)
+                .append(",").append(express).append(")").toString();
     }
 
     public static <T, R> String dateAdd(TypeFunction<T, R> function, String express) {
         return dateAdd(TypeFunction.getLambdaColumnName(function), express);
     }
 
-
-    private static class StrToDateFuncBuilder extends AbstractFuncBuilder {
-        private StrToDateFuncBuilder(String field, String formatPattern) {
-            this.funcSql = "STR_TO_DATE(" + field + ",'" + formatPattern + "')";
-        }
+    public static FuncBuilderExt strToDateAs(String field, String formatPattern) {
+        return new FuncBuilderExt(strToDate(field, formatPattern));
     }
 
-    public static AbstractFuncBuilder strToDateAs(String field, String formatPattern) {
-        return new StrToDateFuncBuilder(field, formatPattern);
-    }
-
-    public static <T, R> AbstractFuncBuilder strToDateAs(TypeFunction<T, R> function, String formatPattern) {
+    public static <T, R> FuncBuilderExt strToDateAs(TypeFunction<T, R> function, String formatPattern) {
         return strToDateAs(TypeFunction.getLambdaColumnName(function), formatPattern);
     }
 
     public static String strToDate(String field, String formatPattern) {
-        return "STR_TO_DATE(" + field + ",'" + formatPattern + "')";
+        return new StringBuilder().append("STR_TO_DATE(").append(field).append(",'")
+                .append(formatPattern).append("')").toString();
     }
 
     public static <T, R> String strToDate(TypeFunction<T, R> function, String formatPattern) {
         return strToDate(TypeFunction.getLambdaColumnName(function), formatPattern);
     }
 
-    private static class IfNullFuncBuilder extends AbstractFuncBuilder {
-        private IfNullFuncBuilder(String field, Object val) {
-            this.funcSql = "IFNULL(" + field + "," + val + ")";
-        }
+    public static FuncBuilderExt ifNullAs(String field, Object val) {
+        return new FuncBuilderExt(ifNull(field, val));
     }
 
-    public static AbstractFuncBuilder ifNullAs(String field, Object val) {
-        return new IfNullFuncBuilder(field, val);
-    }
-
-    public static <T, R> AbstractFuncBuilder ifNullAs(TypeFunction<T, R> function, Object val) {
+    public static <T, R> FuncBuilderExt ifNullAs(TypeFunction<T, R> function, Object val) {
         return ifNullAs(TypeFunction.getLambdaColumnName(function), val);
     }
 
     public static String ifNull(String field, Object val) {
-        return "IFNULL(" + field + "," + val + ")";
+        return new StringBuilder().append("IFNULL(").append(field)
+                .append(",").append(val).append(")").toString();
     }
 
     public static <T, R> String ifNull(TypeFunction<T, R> function, Object val) {
         return ifNull(TypeFunction.getLambdaColumnName(function), val);
     }
 
-    private static class IfFuncBuilder extends AbstractFuncBuilder {
-        private IfFuncBuilder(String express, Object val1, Object val2) {
-            this.funcSql = "IF(" + express + "," + val1 + "," + val2 + ")";
-        }
+    public static FuncBuilderExt ifAs(String express, Object val1, Object val2) {
+        return new FuncBuilderExt(_if(express, val1, val2));
     }
 
-    public static AbstractFuncBuilder ifAs(String express, Object val1, Object val2) {
-        return new IfFuncBuilder(express, val1, val2);
-    }
-
-    public static <T, R> AbstractFuncBuilder ifAs(TypeFunction<T, R> function, Object val1, Object val2) {
+    public static <T, R> FuncBuilderExt ifAs(TypeFunction<T, R> function, Object val1, Object val2) {
         return ifAs(TypeFunction.getLambdaColumnName(function), val1, val2);
     }
 
     public static String _if(String express, Object val1, Object val2) {
-        return "IF(" + express + "," + val1 + "," + val2 + ")";
+        return new StringBuilder().append("IF(").append(express).append(",")
+                .append(val1).append(",").append(val2).append(")").toString();
     }
 
     public static <T, R> String _if(TypeFunction<T, R> function, Object val1, Object val2) {
         return _if(TypeFunction.getLambdaColumnName(function), val1, val2);
     }
 
-    private static class UnixTimeStampBuilder extends AbstractFuncBuilder {
-        private UnixTimeStampBuilder(String field) {
-            this.funcSql = "UNIX_TIMESTAMP(" + field + ")";
-        }
+    public static FuncBuilderExt unixTimeStampAs(String field) {
+        return new FuncBuilderExt(unixTimeStamp(field));
     }
 
-    public static AbstractFuncBuilder unixTimeStampAs(String field) {
-        return new UnixTimeStampBuilder(field);
-    }
-
-    public static <T, R> AbstractFuncBuilder unixTimeStampAs(TypeFunction<T, R> function) {
+    public static <T, R> FuncBuilderExt unixTimeStampAs(TypeFunction<T, R> function) {
         return unixTimeStampAs(TypeFunction.getLambdaColumnName(function));
     }
 
@@ -987,39 +668,28 @@ public class FuncBuilder {
         return unixTimeStamp(TypeFunction.getLambdaColumnName(function));
     }
 
-    private static class FromUnixTimeFuncBuilder extends AbstractFuncBuilder {
-        private FromUnixTimeFuncBuilder(String field, String formatPattern) {
-            this.funcSql = "FROM_UNIXTIME(" + field + ",'" + formatPattern + "')";
-        }
+    public static FuncBuilderExt fromUnixTimeAs(String field, String formatPattern) {
+        return new FuncBuilderExt(fromUnixTime(field, formatPattern));
     }
 
-    public static AbstractFuncBuilder fromUnixTimeAs(String field, String formatPattern) {
-        return new FromUnixTimeFuncBuilder(field, formatPattern);
-    }
-
-    public static <T, R> AbstractFuncBuilder fromUnixTimeAs(TypeFunction<T, R> function, String formatPattern) {
+    public static <T, R> FuncBuilderExt fromUnixTimeAs(TypeFunction<T, R> function, String formatPattern) {
         return fromUnixTimeAs(TypeFunction.getLambdaColumnName(function), formatPattern);
     }
 
     public static String fromUnixTime(String field, String formatPattern) {
-        return "FROM_UNIXTIME(" + field + ",'" + formatPattern + "')";
+        return new StringBuilder().append("FROM_UNIXTIME(").append(field)
+                .append(",'").append(formatPattern).append("')").toString();
     }
 
     public static <T, R> String fromUnixTime(TypeFunction<T, R> function, String formatPattern) {
         return fromUnixTime(TypeFunction.getLambdaColumnName(function), formatPattern);
     }
 
-    private static class DateFuncBuilder extends AbstractFuncBuilder {
-        private DateFuncBuilder(String field) {
-            this.funcSql = "DATE(" + field + ")";
-        }
+    public static FuncBuilderExt dateAs(String field) {
+        return new FuncBuilderExt(date(field));
     }
 
-    public static AbstractFuncBuilder dateAs(String field) {
-        return new DateFuncBuilder(field);
-    }
-
-    public static <T, R> AbstractFuncBuilder dateAs(TypeFunction<T, R> function) {
+    public static <T, R> FuncBuilderExt dateAs(TypeFunction<T, R> function) {
         return dateAs(TypeFunction.getLambdaColumnName(function));
     }
 
@@ -1029,6 +699,16 @@ public class FuncBuilder {
 
     public static <T, R> String date(TypeFunction<T, R> function) {
         return date(TypeFunction.getLambdaColumnName(function));
+    }
+
+    private static class FuncBuilderExt {
+        private String funcSql;
+        protected FuncBuilderExt(String funcSql){
+            this.funcSql = funcSql;
+        }
+        public String as(String as) {
+            return funcSql + " AS " + as;
+        }
     }
 
 }

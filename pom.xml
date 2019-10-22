@@ -19,13 +19,6 @@
         </license>
     </licenses>
 
-    <scm>
-        <connection>scm:git:https://github.com/SpringStudent/GyJdbc.git</connection>
-        <developerConnection>scm:git:https://github.com/SpringStudent/GyJdbc.git</developerConnection>
-        <url>https://github.com/SpringStudent/GyJdbc</url>
-        <tag>${project.version}</tag>
-    </scm>
-
     <developers>
         <developer>
             <name>zhouning</name>
@@ -134,20 +127,6 @@
                         <id>attach-sources</id>
                         <goals>
                             <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
                         </goals>
                     </execution>
                 </executions>
